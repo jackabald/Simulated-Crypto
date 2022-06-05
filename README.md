@@ -4,5 +4,5 @@ market holds multiple wallets and facilitates the transfer of coins between them
 
 
 
-# What I've Learned
-Exception handling, Object-Oriented Programming, Search algorithms, and how to use git!
+# What I Learned
+Exception handling, Object-Oriented Programming, Testing code, and an introduction to git!
