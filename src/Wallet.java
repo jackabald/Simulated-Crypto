@@ -1,4 +1,3 @@
-import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.ArrayList;
@@ -17,13 +16,13 @@ public class Wallet {
         this.amountOwned = amountOwned;
         this.coins = coins;
     }
-    public int searchCoin(String coinName) throws NullPointerException,NoSuchElementException {
+    public int searchCoin(Coin coin) throws NullPointerException,NoSuchElementException {
         int index = -1;
-        if (coinName == null) {
-            throw new NullPointerException("coinName cannot be null");
+        if (coin == null) {
+            throw new NullPointerException("coin cannot be null");
         }
         for (int i = 0; i < coins.size(); i++) {
-            if (coins.get(i).getCoinName().toLowerCase().equals(coinName.toLowerCase())) {
+            if (coins.get(i).equals(coin)) {
                 index = i;
             }
         }
@@ -32,19 +31,20 @@ public class Wallet {
         }
         return index;
     }
-    public void addNumCoins(String coinName, double amount) throws NoSuchElementException {
+    public void addNumCoins(Coin coin, double amount) throws NoSuchElementException {
         try {
-            int index = searchCoin(coinName);
+            int index = searchCoin(coin);
             amountOwned.set(index, amountOwned.get(index) + amount);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }catch(NoSuchElementException e){
-            System.out.println(e.getMessage());
+            coins.add(coin);
+            amountOwned.add(amount);
         }
     }
-    public void removeNumCoins(String coinName, double amount) throws NoSuchElementException{
+    public void removeNumCoins(Coin coin, double amount) throws NoSuchElementException{
         try {
-            int index = searchCoin(coinName);
+            int index = searchCoin(coin);
             amountOwned.set(index, amountOwned.get(index) - amount);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -52,9 +52,9 @@ public class Wallet {
             System.out.println(e.getMessage());
         }
     }
-    public double coinAmountOwnedUSD(String coinName){
+    public double coinAmountOwnedUSD(Coin coin){
         try{
-            int index = searchCoin(coinName);
+            int index = searchCoin(coin);
             double coinToUSD = coins.get(index).getUSDPerCoin();
             double numCoins = amountOwned.get(index);
             return coinToUSD * numCoins;
