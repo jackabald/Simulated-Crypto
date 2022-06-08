@@ -1,14 +1,15 @@
 /**
  * Coin creates a currency to add to a wallet
+ * @author Jack Archibald
  */
 public class Coin {
     private String coinName;
     private final double USDPerCoin;
 
     /**
-     *
-     * @param coinName
-     * @param USDPerCoin
+     * Coin constructor
+     * @param coinName Name of the coin
+     * @param USDPerCoin USD value of 1 coin
      */
     public Coin(String coinName, double USDPerCoin){
         this.coinName = coinName;
@@ -16,16 +17,16 @@ public class Coin {
     }
 
     /**
-     *
-     * @return
+     * getter method for coin name
+     * @return coin name
      */
     public String getCoinName(){
         return coinName;
     }
 
     /**
-     *
-     * @return
+     * getter method for the price of the coin
+     * @return price of the coin
      */
     public double getUSDPerCoin(){
         return USDPerCoin;
